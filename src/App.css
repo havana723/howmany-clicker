@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+body,
+html {
+  font-family: "PFStardust", sans-serif;
+  overflow: hidden;
+  user-select: none;
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+div#root {
+  font-family: "PFStardust", sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+button {
+  font-family: "PFStardust", sans-serif;
+}
+
+@font-face {
+  font-family: "PFStardust";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/PFStardust.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
