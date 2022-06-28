@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import PerClickController from "./PerClickController";
 
 interface State {
   state: "perClick" | "perSecond" | "badge";
@@ -15,7 +16,6 @@ const Background = styled.div`
 `;
 
 const Tab = styled.div`
-  position: absolute;
   height: 15%;
   width: 100%;
   top: 0;
@@ -64,6 +64,7 @@ const Controller: React.FC = () => {
             뱃지
           </TabButton>
         </Tab>
+        {state === "perClick" ? <PerClickController /> : null}
       </Background>
     </>
   );

@@ -79,7 +79,7 @@ const FloatingImage: React.FC = () => {
           onClick={() =>
             gameState.setGameState({
               ...gameState.state,
-              howmany: gameState.state.howmany + 1,
+              howmany: gameState.state.howmany + gameState.state.perClick,
             })
           }
         >
