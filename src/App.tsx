@@ -67,6 +67,7 @@ function useInterval(callback: () => void, delay: number) {
 
 function App() {
   const initialStateRaw = localStorage.getItem("gameState");
+  //const initialStateRaw = JSON.stringify(defaultState);
   const [gameState, setGameState] = useState<GameState>(
     initialStateRaw ? (JSON.parse(initialStateRaw) as any) : defaultState
   );

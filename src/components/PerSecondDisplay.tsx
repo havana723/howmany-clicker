@@ -10,7 +10,6 @@ interface Props {
 
 const WeaponContainer = styled.div<{ level: number; maxLevel: number }>`
   width: 100%;
-  height: 20%;
   border: 1px gray solid;
   color: ${({ level }) => (level ? "white" : "gray")};
   padding: 0px 20px;
@@ -73,7 +72,8 @@ const PerSecondDisplay: React.FC<Props> = (props) => {
             <div>MAX</div>
           ) : (
             <div>
-              다음 +{weapon.bonus[level + 1]}/{weapon.cost[level]} 명
+              다음 +{weapon.bonus[level + 1]}/
+              {numberToString(weapon.cost[level])} 명
             </div>
           )}
         </TextContainer>
