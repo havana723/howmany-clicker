@@ -25,4 +25,10 @@ export const guilds: Guild[] = [
     bonus: [0, 0.1, 0.5, 1, 3],
     cost: [10, 100, 1000, 10000, 100000],
   },
+  {
+    id: "mahjong",
+    displayName: "쿠작",
+    bonus: [0, 0.1, 0.5, 1, 3],
+    cost: [10, 100, 1000, 10000, 100000],
+  },
 ];

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Sparkle from "react-sparkle";
 import "./App.css";
 import Controller from "./components/Controller";
@@ -48,11 +48,35 @@ const Text = styled.div`
   font-size: 6vh;
 `;
 
+function useInterval(callback: () => void, delay: number) {
+  const savedCallback = useRef<() => void>();
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      if (savedCallback.current) savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+
 function App() {
   const initialStateRaw = localStorage.getItem("gameState");
   const [gameState, setGameState] = useState<GameState>(
     initialStateRaw ? (JSON.parse(initialStateRaw) as any) : defaultState
   );
+
+  useInterval(() => {
+    setGameState({
+      ...gameState,
+      howmany: gameState.howmany + gameState.perSecond,
+    });
+  }, 1000);
 
   useEffect(() => {
     localStorage.setItem("gameState", JSON.stringify(gameState));

@@ -1,4 +1,7 @@
+import { guilds } from "../constants/perClick";
+import { weapons } from "../constants/perSecond";
 import { GuildState } from "./perClick";
+import { WeaponState } from "./perSecond";
 
 export interface GameState {
   howmany: number;
@@ -7,6 +10,7 @@ export interface GameState {
   perSecond: number;
 
   guildStates: GuildState[];
+  weaponStates: WeaponState[];
 
   startTime: Date;
 }
@@ -17,44 +21,14 @@ export const defaultState: GameState = {
   perClick: 1,
   perSecond: 0,
 
-  guildStates: [
-    {
-      guild: {
-        id: "boardGame",
-        displayName: "보드게임 소모임",
-        bonus: [0, 0.1, 0.5, 1, 3],
-        cost: [10, 100, 1000, 10000, 100000],
-      },
-      level: 0,
-    },
-    {
-      guild: {
-        id: "camera",
-        displayName: "필카소",
-        bonus: [0, 0.1, 0.5, 1, 3],
-        cost: [10, 100, 1000, 10000, 100000],
-      },
-      level: 0,
-    },
-    {
-      guild: {
-        id: "terraforming",
-        displayName: "화성관측연구부",
-        bonus: [0, 0.1, 0.5, 1, 3],
-        cost: [10, 100, 1000, 10000, 100000],
-      },
-      level: 0,
-    },
-    {
-      guild: {
-        id: "humor",
-        displayName: "아재개그 소모임",
-        bonus: [0, 0.1, 0.5, 1, 3],
-        cost: [10, 100, 1000, 10000, 100000],
-      },
-      level: 0,
-    },
-  ],
+  guildStates: guilds.map((g) => ({
+    guild: g,
+    level: 0,
+  })) as unknown as GuildState[],
+  weaponStates: weapons.map((w) => ({
+    weapon: w,
+    level: 0,
+  })) as unknown as WeaponState[],
 
   startTime: new Date(),
 };

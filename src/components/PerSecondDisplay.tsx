@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import { useContext } from "react";
 import { GameStateContext } from "../contexts/GameStateContext";
-import { Guild } from "../types/perClick";
+import { Weapon } from "../types/perSecond";
 import { numberToString } from "../utils/format";
 
 interface Props {
-  guild: Guild;
+  weapon: Weapon;
 }
 
-const GuildContainer = styled.div<{ level: number; maxLevel: number }>`
+const WeaponContainer = styled.div<{ level: number; maxLevel: number }>`
   width: 100%;
   height: 20%;
   border: 1px gray solid;
@@ -28,58 +28,58 @@ const TextContainer = styled.div`
   justify-content: space-between;
 `;
 
-const PerClickDisplay: React.FC<Props> = (props) => {
+const PerSecondDisplay: React.FC<Props> = (props) => {
   const gameState = useContext(GameStateContext);
 
-  const guild = props.guild;
+  const weapon = props.weapon;
   const level =
-    gameState.state.guildStates.find((g) => g.guild.id === guild.id)?.level ||
-    0;
-  const maxLevel = guild.bonus.length - 1;
+    gameState.state.weaponStates.find((g) => g.weapon.id === weapon.id)
+      ?.level || 0;
+  const maxLevel = weapon.bonus.length - 1;
 
   function pressHandleUpgrade() {
     if (level === maxLevel) return;
-    if (gameState.state.howmany < guild.cost[level]) {
+    if (gameState.state.howmany < weapon.cost[level]) {
       alert("사람이 부족합니다!");
       return;
     }
-    const newGuildStates = gameState.state.guildStates.map((g) =>
-      g.guild.id === guild.id ? { ...g, level: g.level + 1 } : g
+    const newGuildStates = gameState.state.weaponStates.map((g) =>
+      g.weapon.id === weapon.id ? { ...g, level: g.level + 1 } : g
     );
-    const newPerClick =
-      gameState.state.perClick - guild.bonus[level] + guild.bonus[level + 1];
-    const newHowmany = gameState.state.howmany - guild.cost[level];
+    const newPerSecond =
+      gameState.state.perSecond - weapon.bonus[level] + weapon.bonus[level + 1];
+    const newHowmany = gameState.state.howmany - weapon.cost[level];
     gameState.setGameState({
       ...gameState.state,
-      guildStates: newGuildStates,
-      perClick: newPerClick,
+      weaponStates: newGuildStates,
+      perSecond: newPerSecond,
       howmany: newHowmany,
     });
   }
 
   return (
     <>
-      <GuildContainer
+      <WeaponContainer
         level={level}
         maxLevel={maxLevel}
         onClick={pressHandleUpgrade}
       >
         <TextContainer>
           <div>
-            {guild.displayName} LV.{level} (+
-            {numberToString(guild.bonus[level])})
+            {weapon.displayName} LV.{level} (+
+            {numberToString(weapon.bonus[level])})
           </div>
           {level === maxLevel ? (
             <div>MAX</div>
           ) : (
             <div>
-              다음 +{guild.bonus[level + 1]}/{guild.cost[level]} 명
+              다음 +{weapon.bonus[level + 1]}/{weapon.cost[level]} 명
             </div>
           )}
         </TextContainer>
-      </GuildContainer>
+      </WeaponContainer>
     </>
   );
 };
 
-export default PerClickDisplay;
+export default PerSecondDisplay;

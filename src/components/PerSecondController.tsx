@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { guilds } from "../constants/perClick";
-import PerClickDisplay from "./PerClickDisplay";
+import { weapons } from "../constants/perSecond";
+import PerSecondDisplay from "./PerSecondDisplay";
 
 const Background = styled.div`
   width: 100%;
@@ -13,13 +13,13 @@ const Background = styled.div`
   }
 `;
 
-const PerClickController: React.FC = () => {
+const PerSecondController: React.FC = () => {
   return (
     <>
       <Background>
-        {guilds.map((g) => (
+        {weapons.map((w) => (
           <>
-            <PerClickDisplay guild={g} /> <div style={{ height: "15px" }} />
+            <PerSecondDisplay weapon={w} /> <div style={{ height: "15px" }} />
           </>
         ))}
         <div style={{ height: "40px" }} />
@@ -28,4 +28,4 @@ const PerClickController: React.FC = () => {
   );
 };
 
-export default PerClickController;
+export default PerSecondController;

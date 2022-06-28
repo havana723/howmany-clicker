@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GameStateContext } from "../contexts/GameStateContext";
+import { numberToString } from "../utils/format";
 import PerClickController from "./PerClickController";
+import PerSecondController from "./PerSecondController";
 
 interface State {
   state: "perClick" | "perSecond" | "badge";
@@ -28,6 +31,7 @@ const TabButton = styled.div<{ state: string; curState: string }>`
   height: 100%;
   width: 20%;
   text-align: center;
+  white-space: nowrap;
   border-bottom: ${({ state, curState }) =>
     state === curState ? "1px white solid" : "unset"};
 
@@ -37,7 +41,10 @@ const TabButton = styled.div<{ state: string; curState: string }>`
 `;
 
 const Controller: React.FC = () => {
+  const gameState = useContext(GameStateContext);
+
   const [state, setState] = useState("perClick");
+
   return (
     <>
       <Background>
@@ -47,14 +54,14 @@ const Controller: React.FC = () => {
             curState={state}
             onClick={() => setState("perClick")}
           >
-            소모임
+            소모임(+{numberToString(gameState.state.perClick)})
           </TabButton>
           <TabButton
             state="perSecond"
             curState={state}
             onClick={() => setState("perSecond")}
           >
-            소품
+            소품(+{numberToString(gameState.state.perSecond)})
           </TabButton>
           <TabButton
             state="badge"
@@ -65,6 +72,7 @@ const Controller: React.FC = () => {
           </TabButton>
         </Tab>
         {state === "perClick" ? <PerClickController /> : null}
+        {state === "perSecond" ? <PerSecondController /> : null}
       </Background>
     </>
   );
