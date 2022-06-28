@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 
 interface State {
-  state: "perClick" | "perSecont" | "Badge";
+  state: "perClick" | "perSecond" | "badge";
 }
 
 const Background = styled.div`
@@ -42,13 +42,25 @@ const Controller: React.FC = () => {
     <>
       <Background>
         <Tab>
-          <TabButton state="perClick" curState={state}>
+          <TabButton
+            state="perClick"
+            curState={state}
+            onClick={() => setState("perClick")}
+          >
             소모임
           </TabButton>
-          <TabButton state="perSecond" curState={state}>
+          <TabButton
+            state="perSecond"
+            curState={state}
+            onClick={() => setState("perSecond")}
+          >
             소품
           </TabButton>
-          <TabButton state="Badges" curState={state}>
+          <TabButton
+            state="badge"
+            curState={state}
+            onClick={() => setState("badge")}
+          >
             뱃지
           </TabButton>
         </Tab>
