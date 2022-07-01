@@ -3,7 +3,9 @@ export function levelToBonus(
   constant: number,
   level: number
 ) {
-  return Math.floor(Math.pow(defaultNumber * 1.1, level));
+  const ret = Math.floor(Math.pow(defaultNumber * 1.0099, level));
+  if (isFinite(ret)) return ret;
+  return 1e308;
 }
 
 export function levelToCostGuild(
@@ -11,7 +13,9 @@ export function levelToCostGuild(
   constant: number,
   level: number
 ) {
-  return Math.floor(Math.pow(defaultNumber * constant * 1.11, level) * 5);
+  const ret = Math.floor(Math.pow(defaultNumber * constant * 1.01, level) * 5);
+  if (isFinite(ret)) return ret;
+  return 1e308;
 }
 
 export function levelToCostWeapon(
@@ -19,5 +23,7 @@ export function levelToCostWeapon(
   constant: number,
   level: number
 ) {
-  return Math.floor(Math.pow(defaultNumber * constant * 1.11, level) * 30);
+  const ret = Math.floor(Math.pow(defaultNumber * constant * 1.01, level) * 30);
+  if (isFinite(ret)) return ret;
+  return 1e308;
 }

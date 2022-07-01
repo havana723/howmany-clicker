@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { SnackbarProvider } from "notistack";
 import { useEffect, useRef, useState } from "react";
 import Sparkle from "react-sparkle";
 import "./App.css";
@@ -87,24 +86,22 @@ function App() {
   }, [gameState]);
 
   return (
-    <SnackbarProvider maxSnack={3}>
-      <GameStateContext.Provider value={{ state: gameState, setGameState }}>
-        <Background>
-          <GaemBoard>
-            <FloatingImage />
-            <Text>{numberToString(gameState.howmany)} 명</Text>
-            <Controller />
-          </GaemBoard>
-          <Sparkle
-            count={50}
-            fadeOutSpeed={10}
-            flickerSpeed="slowest"
-            overflowPx={0}
-          />
-          <div style={{ height: "10%" }} />
-        </Background>
-      </GameStateContext.Provider>
-    </SnackbarProvider>
+    <GameStateContext.Provider value={{ state: gameState, setGameState }}>
+      <Background>
+        <GaemBoard>
+          <FloatingImage />
+          <Text>{numberToString(gameState.howmany)} 명</Text>
+          <Controller />
+        </GaemBoard>
+        <Sparkle
+          count={50}
+          fadeOutSpeed={10}
+          flickerSpeed="slowest"
+          overflowPx={0}
+        />
+        <div style={{ height: "10%" }} />
+      </Background>
+    </GameStateContext.Provider>
   );
 }
 

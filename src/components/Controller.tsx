@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useContext, useState } from "react";
 import { GameStateContext } from "../contexts/GameStateContext";
 import { numberToString } from "../utils/format";
+import BadgeController from "./BadgeController";
 import PerClickController from "./PerClickController";
 import PerSecondController from "./PerSecondController";
 
@@ -73,6 +74,7 @@ const Controller: React.FC = () => {
         </Tab>
         {state === "perClick" ? <PerClickController /> : null}
         {state === "perSecond" ? <PerSecondController /> : null}
+        {state === "badge" ? <BadgeController /> : null}
       </Background>
     </>
   );

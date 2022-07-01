@@ -16,7 +16,8 @@ const WeaponContainer = styled.div<{
 }>`
   width: 100%;
   border: 1px gray solid;
-  color: ${({ disable }) => (!disable ? "white" : "gray")};
+  color: ${({ level, maxLevel, disable }) =>
+    !disable && level != maxLevel ? "white" : "gray"};
   padding: 0px 20px;
 
   &:hover {
