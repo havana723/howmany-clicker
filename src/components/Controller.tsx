@@ -6,10 +6,6 @@ import BadgeController from "./BadgeController";
 import PerClickController from "./PerClickController";
 import PerSecondController from "./PerSecondController";
 
-interface State {
-  state: "perClick" | "perSecond" | "badge";
-}
-
 const Background = styled.div`
   background-color: black;
   position: absolute;
