@@ -33,7 +33,7 @@ export const weapons: Weapon[] = [
   },
   {
     id: "kawaii",
-    displayName: "규호는 귀엽다",
+    displayName: "망원경",
     defaultNumber: 1000000,
     constant: 2.5,
   },

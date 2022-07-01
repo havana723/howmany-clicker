@@ -3,7 +3,7 @@ export function levelToBonus(
   constant: number,
   level: number
 ) {
-  const ret = Math.floor(Math.pow(defaultNumber, level));
+  const ret = Math.floor(Math.pow(defaultNumber * constant * 0.9, level));
   if (isFinite(ret)) return ret;
   return 1e308;
 }

@@ -84,34 +84,34 @@ function App() {
 
   function unlockBadgeHowmany(howmany: number) {
     if (howmany >= 1000) unlockBadge("first1000");
-    else if (howmany >= 1e10) unlockBadge("first1e10");
-    else if (howmany >= 1e20) unlockBadge("first1e20");
-    else if (howmany >= 1e50) unlockBadge("first1e50");
-    else if (howmany >= 1e100) unlockBadge("first1e100");
-    else if (howmany >= 1e300) unlockBadge("first1e300");
-    else if (!isFinite(howmany)) unlockBadge("firstInfinity");
+    if (howmany >= 1e10) unlockBadge("first1e10");
+    if (howmany >= 1e20) unlockBadge("first1e20");
+    if (howmany >= 1e50) unlockBadge("first1e50");
+    if (howmany >= 1e100) unlockBadge("first1e100");
+    if (howmany >= 1e300) unlockBadge("first1e300");
+    if (!isFinite(howmany)) unlockBadge("firstInfinity");
   }
 
   function unlockBadgeClicks(clicks: number) {
     if (clicks >= 10) unlockBadge("firstClick10");
-    else if (clicks >= 1000) unlockBadge("firstClick1000");
-    else if (clicks >= 1e8) unlockBadge("firstClick1e8");
-    else if (clicks >= 1e10) unlockBadge("firstClick1e10");
+    if (clicks >= 1000) unlockBadge("firstClick1000");
+    if (clicks >= 1e8) unlockBadge("firstClick1e8");
+    if (clicks >= 1e10) unlockBadge("firstClick1e10");
   }
 
   function unlockBadgePurchases(purchases: number) {
     if (purchases >= 1) unlockBadge("firstPurchase1");
-    else if (purchases >= 10) unlockBadge("firstPurchase10");
-    else if (purchases >= 100) unlockBadge("firstPurchase100");
+    if (purchases >= 10) unlockBadge("firstPurchase10");
+    if (purchases >= 100) unlockBadge("firstPurchase100");
   }
 
   function unlockBadgeDate(date: Date) {
     const now = new Date();
     const time = now.getTime() - date.getTime();
     if (time >= 1000 * 60 * 10) unlockBadge("time10min");
-    else if (time >= 1000 * 60 * 60) unlockBadge("time1hour");
-    else if (time >= 1000 * 60 * 60 * 24) unlockBadge("time1day");
-    else if (time >= 1000 * 60 * 60 * 24 * 7) unlockBadge("time7day");
+    if (time >= 1000 * 60 * 60) unlockBadge("time1hour");
+    if (time >= 1000 * 60 * 60 * 24) unlockBadge("time1day");
+    if (time >= 1000 * 60 * 60 * 24 * 7) unlockBadge("time7day");
   }
 
   useInterval(() => {
