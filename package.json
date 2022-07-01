@@ -1,6 +1,7 @@
 {
   "name": "howmany-clicker",
   "version": "0.1.0",
+  "homepage": "https://havana723.github.io/howmany-clicker/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
