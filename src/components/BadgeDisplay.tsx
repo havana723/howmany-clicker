@@ -27,7 +27,7 @@ const BadgeDisplay: React.FC<Props> = (props) => {
   const gameState = useContext(GameStateContext);
 
   const badge = props.badge;
-  const unlocked = gameState.state.bagdeStates.find(
+  const unlocked = gameState.state.badgeStates.find(
     (b) => b.badge.id === badge.id
   )?.unlocked;
 

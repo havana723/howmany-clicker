@@ -7,21 +7,6 @@ export const badges: Badge[] = [
     details: "쿠아혁신처에 첫 발을 들였다",
   },
   {
-    id: "firstPurchase",
-    displayName: "첫 구매",
-    details: "처음으로 소모임/소품을 구매했다",
-  },
-  {
-    id: "firstPurchase10",
-    displayName: "열 번째 구매",
-    details: "소모임/소품을 열 번 구매했다",
-  },
-  {
-    id: "firstPurchase100",
-    displayName: "백 번째 구매",
-    details: "소모임/소품을 백 번 구매했다",
-  },
-  {
     id: "first1000",
     displayName: "1000명",
     details: "동사몇이 1000을 돌파했다",
@@ -75,6 +60,21 @@ export const badges: Badge[] = [
     id: "firstClick1e10",
     displayName: "1e10회 클릭",
     details: "1e10회 클릭했다",
+  },
+  {
+    id: "firstPurchase1",
+    displayName: "첫 구매",
+    details: "처음으로 소모임/소품을 구매했다",
+  },
+  {
+    id: "firstPurchase10",
+    displayName: "열 번째 구매",
+    details: "소모임/소품을 열 번 구매했다",
+  },
+  {
+    id: "firstPurchase100",
+    displayName: "백 번째 구매",
+    details: "소모임/소품을 백 번 구매했다",
   },
   {
     id: "time10min",

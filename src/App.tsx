@@ -67,19 +67,65 @@ function useInterval(callback: () => void, delay: number) {
 
 function App() {
   const initialStateRaw = localStorage.getItem("gameState");
-  //const initialStateRaw = JSON.stringify(defaultState);
   const [gameState, setGameState] = useState<GameState>(
     initialStateRaw
       ? { ...defaultState, ...(JSON.parse(initialStateRaw) as any) }
       : defaultState
   );
 
+  function unlockBadge(badgeId: string) {
+    setGameState((prevGameState) => ({
+      ...prevGameState,
+      badgeStates: prevGameState.badgeStates.map((b) =>
+        b.badge.id === badgeId ? { ...b, unlocked: true } : b
+      ),
+    }));
+  }
+
+  function unlockBadgeHowmany(howmany: number) {
+    if (howmany >= 1000) unlockBadge("first1000");
+    else if (howmany >= 1e10) unlockBadge("first1e10");
+    else if (howmany >= 1e20) unlockBadge("first1e20");
+    else if (howmany >= 1e50) unlockBadge("first1e50");
+    else if (howmany >= 1e100) unlockBadge("first1e100");
+    else if (howmany >= 1e300) unlockBadge("first1e300");
+    else if (!isFinite(howmany)) unlockBadge("firstInfinity");
+  }
+
+  function unlockBadgeClicks(clicks: number) {
+    if (clicks >= 10) unlockBadge("firstClick10");
+    else if (clicks >= 1000) unlockBadge("firstClick1000");
+    else if (clicks >= 1e8) unlockBadge("firstClick1e8");
+    else if (clicks >= 1e10) unlockBadge("firstClick1e10");
+  }
+
+  function unlockBadgePurchases(purchases: number) {
+    if (purchases >= 1) unlockBadge("firstPurchase1");
+    else if (purchases >= 10) unlockBadge("firstPurchase10");
+    else if (purchases >= 100) unlockBadge("firstPurchase100");
+  }
+
+  function unlockBadgeDate(date: Date) {
+    const now = new Date();
+    const time = now.getTime() - date.getTime();
+    if (time >= 1000 * 60 * 10) unlockBadge("time10min");
+    else if (time >= 1000 * 60 * 60) unlockBadge("time1hour");
+    else if (time >= 1000 * 60 * 60 * 24) unlockBadge("time1day");
+    else if (time >= 1000 * 60 * 60 * 24 * 7) unlockBadge("time7day");
+  }
+
   useInterval(() => {
-    setGameState({
-      ...gameState,
+    unlockBadge("start");
+    setGameState((prevGameState) => ({
+      ...prevGameState,
       howmany: gameState.howmany + gameState.perSecond,
-    });
-  }, 30);
+    }));
+
+    unlockBadgeHowmany(gameState.howmany);
+    unlockBadgeClicks(gameState.clicks);
+    unlockBadgePurchases(gameState.purchases);
+    unlockBadgeDate(new Date(gameState.startTime));
+  }, 1000);
 
   useEffect(() => {
     localStorage.setItem("gameState", JSON.stringify(gameState));

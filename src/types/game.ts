@@ -15,7 +15,10 @@ export interface GameState {
 
   guildStates: GuildState[];
   weaponStates: WeaponState[];
-  bagdeStates: BadgeState[];
+  badgeStates: BadgeState[];
+
+  clicks: number;
+  purchases: number;
 
   startTime: Date;
 }
@@ -35,10 +38,13 @@ export const defaultState: GameState = {
     weapon: w,
     level: 0,
   })) as unknown as WeaponState[],
-  bagdeStates: badges.map((b) => ({
+  badgeStates: badges.map((b) => ({
     badge: b,
     unlocked: false,
   })) as unknown as BadgeState[],
+
+  clicks: 0,
+  purchases: 0,
 
   startTime: new Date(),
 };

@@ -61,11 +61,13 @@ const PerSecondDisplay: React.FC<Props> = (props) => {
     const newHowmany =
       gameState.state.howmany -
       levelToCostWeapon(weapon.defaultNumber, weapon.constant, level + 1);
+    const newPurchases = gameState.state.purchases + 1;
     gameState.setGameState({
       ...gameState.state,
       weaponStates: newGuildStates,
       perSecond: newPerSecond,
       howmany: newHowmany,
+      purchases: newPurchases,
     });
   }
 

@@ -62,11 +62,13 @@ const PerClickDisplay: React.FC<Props> = (props) => {
     const newHowmany =
       gameState.state.howmany -
       levelToCostGuild(guild.defaultNumber, guild.constant, level + 1);
+    const newPurchases = gameState.state.purchases + 1;
     gameState.setGameState({
       ...gameState.state,
       guildStates: newGuildStates,
       perClick: newPerClick,
       howmany: newHowmany,
+      purchases: newPurchases,
     });
   }
 
