@@ -1,8 +1,8 @@
 export interface Weapon {
   id: string;
   displayName: string;
-  bonus: number[];
-  cost: number[];
+  defaultNumber: number;
+  constant: number;
 }
 
 export interface WeaponState {

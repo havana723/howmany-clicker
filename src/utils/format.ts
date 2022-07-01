@@ -9,5 +9,5 @@ export function numberToString(howmany: number): string {
     });
   }
   if (howmany < 100000) return howmany.toLocaleString();
-  return howmany.toExponential();
+  return howmany.toExponential(2);
 }

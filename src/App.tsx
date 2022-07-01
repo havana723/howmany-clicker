@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { SnackbarProvider } from "notistack";
 import { useEffect, useRef, useState } from "react";
 import Sparkle from "react-sparkle";
 import "./App.css";
@@ -69,7 +70,9 @@ function App() {
   const initialStateRaw = localStorage.getItem("gameState");
   //const initialStateRaw = JSON.stringify(defaultState);
   const [gameState, setGameState] = useState<GameState>(
-    initialStateRaw ? (JSON.parse(initialStateRaw) as any) : defaultState
+    initialStateRaw
+      ? { ...defaultState, ...(JSON.parse(initialStateRaw) as any) }
+      : defaultState
   );
 
   useInterval(() => {
@@ -77,29 +80,31 @@ function App() {
       ...gameState,
       howmany: gameState.howmany + gameState.perSecond,
     });
-  }, 1000);
+  }, 30);
 
   useEffect(() => {
     localStorage.setItem("gameState", JSON.stringify(gameState));
   }, [gameState]);
 
   return (
-    <GameStateContext.Provider value={{ state: gameState, setGameState }}>
-      <Background>
-        <GaemBoard>
-          <FloatingImage />
-          <Text>{numberToString(gameState.howmany)} 명</Text>
-          <Controller />
-        </GaemBoard>
-        <Sparkle
-          count={50}
-          fadeOutSpeed={10}
-          flickerSpeed="slowest"
-          overflowPx={0}
-        />
-        <div style={{ height: "10%" }} />
-      </Background>
-    </GameStateContext.Provider>
+    <SnackbarProvider maxSnack={3}>
+      <GameStateContext.Provider value={{ state: gameState, setGameState }}>
+        <Background>
+          <GaemBoard>
+            <FloatingImage />
+            <Text>{numberToString(gameState.howmany)} 명</Text>
+            <Controller />
+          </GaemBoard>
+          <Sparkle
+            count={50}
+            fadeOutSpeed={10}
+            flickerSpeed="slowest"
+            overflowPx={0}
+          />
+          <div style={{ height: "10%" }} />
+        </Background>
+      </GameStateContext.Provider>
+    </SnackbarProvider>
   );
 }
 
