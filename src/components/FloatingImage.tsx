@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import React, { useContext } from "react";
-import img0 from ".././img/137_0.png";
-import img1 from ".././img/137_1.png";
-import img2 from ".././img/137_2.png";
-import img3 from ".././img/137_3.png";
-import img4 from ".././img/137_4.png";
-import img5 from ".././img/137_5.png";
-import img6 from ".././img/137_6.png";
 import { GameStateContext } from "../contexts/GameStateContext";
+import img0 from "../img/137_0.png";
+import img1 from "../img/137_1.png";
+import img2 from "../img/137_2.png";
+import img3 from "../img/137_3.png";
+import img4 from "../img/137_4.png";
+import img5 from "../img/137_5.png";
+import img6 from "../img/137_6.png";
 
 const imgs = [img0, img1, img2, img3, img4, img5, img6];
 
